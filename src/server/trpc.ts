@@ -1,11 +1,28 @@
-import { initTRPC } from '@trpc/server';
-import { OpenApiMeta } from 'trpc-openapi';
+import { PrismaClient } from "@prisma/client";
+import { initTRPC } from "@trpc/server";
+import { OpenApiMeta } from "trpc-openapi";
+import { prisma } from "./prisma";
 
-// Avoid exporting the entire t-object
-// since it's not very descriptive.
-// For instance, the use of a t variable
-// is common in i18n libraries.
-const t = initTRPC.meta<OpenApiMeta>().create();
-// Base router and procedure helpers
+type createTRPCInnerContextProps = {
+  prisma?: PrismaClient;
+};
+
+export const createTRPCInnerContext = (
+  opts: createTRPCInnerContextProps = {}
+) => {
+  return {
+    prisma: opts?.prisma || prisma,
+  };
+};
+
+export const createTRPCContext = () => {
+  return createTRPCInnerContext();
+};
+
+const t = initTRPC
+  .context<typeof createTRPCContext>()
+  .meta<OpenApiMeta>()
+  .create();
+
 export const router = t.router;
 export const procedure = t.procedure;
