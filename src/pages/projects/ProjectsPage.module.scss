@@ -1,3 +1,6 @@
-.page {
-  color: red;
+.prefix-projects-page {
+
+  &__title {
+    @apply my-6;
+  }
 }

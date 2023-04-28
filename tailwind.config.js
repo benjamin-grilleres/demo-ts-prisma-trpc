@@ -5,5 +5,5 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/app/**/*.{js,ts,jsx,tsx}",
   ],
-  plugins: [],
+  plugins: [require("@tailwindcss/aspect-ratio")],
 };
