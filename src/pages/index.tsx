@@ -1,13 +1,13 @@
-import { trpc } from '@utils/trpc';
+import { ROUTE_URLS } from '@/constants/routes';
+import { trpc } from '@/utils/trpc';
+import Link from 'next/link';
+import Container from '@mui/material/Container';
 
 export default function IndexPage() {
-  const hello = trpc.hello.useQuery({ text: 'client' });
-  if (!hello.data) {
-    return <div>Loading...</div>;
-  }
   return (
-    <div>
-      <p>{hello.data.greeting}</p>
-    </div>
+    <Container maxWidth="sm">
+      <h1>Démo gouv</h1>
+      <Link href={ROUTE_URLS.PROJECTS}>Accéder à la liste des projets</Link>
+    </Container>
   );
 }

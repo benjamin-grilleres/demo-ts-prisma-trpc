@@ -7,10 +7,7 @@ module.exports = {
   // ),
   // TODO: Use tsconfig alias instead of redefine them
   moduleNameMapper: {
-    "^@server/(.*)$": "<rootDir>/src/server/$1",
-    "^@utils/(.*)$": "<rootDir>/src/utils/$1",
-    "^@tests/(.*)$": "<rootDir>/tests/$1",
-    "^@tests": "<rootDir>/tests",
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
   clearMocks: true,
   coverageProvider: "v8",

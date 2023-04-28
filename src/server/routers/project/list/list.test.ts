@@ -1,7 +1,7 @@
 import { Prisma, PrismaClient, Project } from "@prisma/client";
 import { mockDeep } from "jest-mock-extended";
-import { appRouter } from "@server/routers/_app";
-import { createTRPCInnerContext } from "@server/trpc";
+import { appRouter } from "@/server/routers/_app";
+import { createTRPCInnerContext } from "@/server/trpc";
 import { prismaMock, routerMock } from "@tests";
 import { defaultProjectSelect, ProjectSelectFindMany } from "./list";
 

@@ -1,4 +1,4 @@
-import { procedure } from "@server/trpc";
+import { procedure } from "@/server/trpc";
 import { Prisma } from "@prisma/client";
 import { z } from "zod";
 

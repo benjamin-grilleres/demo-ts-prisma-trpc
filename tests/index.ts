@@ -1,6 +1,6 @@
 import { mockDeep } from "jest-mock-extended";
-import { appRouter } from "@server/routers/_app";
-import { createTRPCInnerContext } from "@server/trpc";
+import { appRouter } from "@/server/routers/_app";
+import { createTRPCInnerContext } from "@/server/trpc";
 import { PrismaClient } from "@prisma/client";
 
 export const prismaMock = mockDeep<PrismaClient>();
