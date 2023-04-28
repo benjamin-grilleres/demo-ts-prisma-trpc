@@ -8,12 +8,14 @@ import styles from "./ProjectsPage.module.scss";
 export default function ProjectsPage() {
   const { data: { items: projects } = {}, isLoading } =
     trpc.projects.list.useQuery();
+
   const clss = cssModulesClasses(styles);
 
   const classes = {
     root: clss("prefix-projects-page"),
     title: clss("prefix-projects-page__title"),
   };
+
   if (!projects) {
     return <div>Loading...</div>;
   }

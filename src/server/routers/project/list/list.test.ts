@@ -1,6 +1,6 @@
 import { prismaMock, routerMock } from "@/tests";
 
-test("getAll test", async () => {
+test("listProjects", async () => {
   const mockOutput = [
     {
       id: 1,
