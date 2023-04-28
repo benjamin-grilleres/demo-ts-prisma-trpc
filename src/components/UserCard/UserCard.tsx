@@ -5,10 +5,14 @@ import { useState } from "react";
 import { ProjectCard } from "../ProjectCard";
 import { fromISOToReadableDate } from "@/utils/date";
 
-type UserPropTypes = Pick<User, "id" | "firstname" | "role">;
+type UserPropTypes = {
+  id: User["id"];
+  firstname: User["firstname"];
+  role?: User["role"];
+};
 type UserCardPropTypes = {
   user: UserPropTypes & {
-    projects: [Pick<Project, "name"> & Pick<ProjectsOnUsers, "joinAt">];
+    projects: Array<{ name: string; joinAt: string | null }>;
   };
 };
 
@@ -22,6 +26,16 @@ const UserCard = ({ user }: UserCardPropTypes) => {
   };
 
   const ChevronComponent = !showProjectsList ? ChevronDownIcon : ChevronUpIcon;
+
+  const getUserJoinDateInProject = (joinAt: string | null) => {
+    const readableDate = fromISOToReadableDate(joinAt || "");
+
+    if (!readableDate) {
+      return "";
+    }
+
+    return "Rejoins le " + readableDate;
+  };
 
   return (
     <div>
@@ -50,9 +64,7 @@ const UserCard = ({ user }: UserCardPropTypes) => {
             <ProjectCard
               key={project.name}
               name={project.name}
-              description={`Rejoint le ${fromISOToReadableDate(
-                project.joinAt?.toString()
-              )}`}
+              description={getUserJoinDateInProject(project.joinAt)}
             />
           ))}
         </div>

@@ -10,10 +10,9 @@ test("listUsersWithProjects", async () => {
         {
           userId: 1,
           projectId: 1,
-          joinAt: Date.now(),
+          joinAt: "2022-10-10T00:00:00.000Z",
           project: {
             name: "my project",
-            description: "description",
           },
         },
       ],
@@ -25,10 +24,11 @@ test("listUsersWithProjects", async () => {
       {
         id: 1,
         firstname: "benjamin",
+        role: "Développeur",
         projects: [
           {
             name: "my project",
-            description: "description",
+            joinAt: "2022-10-10T00:00:00.000Z",
           },
         ],
       },

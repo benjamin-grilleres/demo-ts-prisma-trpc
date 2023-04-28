@@ -11,8 +11,7 @@ const outputListUsersWithProjects = z.object({
       projects: z.array(
         z.object({
           name: z.string(),
-          description: z.string(),
-          joinAt: z.date().nullable(),
+          joinAt: z.string().nullable(),
         })
       ),
     })
@@ -32,7 +31,6 @@ export const defaultUserSelect = Prisma.validator<Prisma.UserArgs>()({
         project: {
           select: {
             name: true,
-            description: true,
           },
         },
       },

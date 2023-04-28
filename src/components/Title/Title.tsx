@@ -1,7 +1,23 @@
-import React from "react";
+import { ReactNode } from "react";
 import cn from "classnames";
 import styles from "./Title.module.scss";
 import { cssModulesClasses } from "@/utils/styles";
+
+type TitlePropTypes = {
+  children: ReactNode;
+  className: string;
+  is: keyof JSX.IntrinsicElements;
+  regular?: boolean;
+  semiBold?: boolean;
+  font?: string;
+  underline?: boolean;
+  center?: boolean;
+  xxl?: boolean;
+  xl?: boolean;
+  lg?: boolean;
+  md?: boolean;
+  sm?: boolean;
+};
 
 const Title = ({
   children,
@@ -18,7 +34,7 @@ const Title = ({
   md = false,
   sm = false,
   ...props
-}) => {
+}: TitlePropTypes) => {
   const clss = cssModulesClasses(styles);
   const classes = cn(
     className,
@@ -36,7 +52,6 @@ const Title = ({
       })
     )
   );
-  console.log("classes", className);
 
   const TitleTag = is;
 
