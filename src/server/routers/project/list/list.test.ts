@@ -1,31 +1,27 @@
-import { Prisma, PrismaClient, Project } from "@prisma/client";
-import { mockDeep } from "jest-mock-extended";
-import { appRouter } from "@/server/routers/_app";
-import { createTRPCInnerContext } from "@/server/trpc";
-import { prismaMock, routerMock } from "@tests";
-import { defaultProjectSelect, ProjectSelectFindMany } from "./list";
+import { prismaMock, routerMock } from "@/tests";
 
 test("getAll test", async () => {
-  type ProjectsWithCity = Prisma.ProjectGetPayload<typeof defaultProjectSelect>;
-
-  const mockOutput: ProjectsWithCity[] = [
+  const mockOutput = [
     {
       id: 1,
-      name: "toto",
+      name: "name",
+      description: "description",
       city: null,
+      cityId: null, // TODO: why cityId is required
     },
   ];
   const expectedResult = {
     items: [
       {
         id: 1,
-        name: "toto",
+        name: "name",
+        description: "description",
         city: null,
       },
     ],
   };
 
-  prismaMock.project.findMany.mockReturnValueOnce(mockOutput);
+  prismaMock.project.findMany.mockResolvedValueOnce(mockOutput);
 
   const result = await routerMock.projects.list();
 

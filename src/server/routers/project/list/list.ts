@@ -7,6 +7,7 @@ const outputListProjects = z.object({
     z.object({
       id: z.number(),
       name: z.string(),
+      description: z.string(),
       city: z
         .object({
           name: z.string(),
@@ -20,6 +21,7 @@ export const defaultProjectSelect = Prisma.validator<Prisma.ProjectArgs>()({
   select: {
     id: true,
     name: true,
+    description: true,
     city: {
       select: {
         id: true,
