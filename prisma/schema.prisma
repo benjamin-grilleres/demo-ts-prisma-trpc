@@ -16,10 +16,27 @@ model City {
   projects Project[]
 }
 
+model User {
+  id        Int               @id @default(autoincrement())
+  firstname String
+  projects  ProjectsOnUsers[]
+}
+
 model Project {
-  id          Int    @id @default(autoincrement())
+  id          Int               @id @default(autoincrement())
   name        String
   description String
   cityId      Int?
-  city        City?  @relation(fields: [cityId], references: [id])
+  city        City?             @relation(fields: [cityId], references: [id])
+  users       ProjectsOnUsers[]
+}
+
+model ProjectsOnUsers {
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId Int // relation scalar field (used in the `@relation` attribute above)
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int // relation scalar field (used in the `@relation` attribute above)
+  joinAt    DateTime @default(now())
+
+  @@id([userId, projectId])
 }
