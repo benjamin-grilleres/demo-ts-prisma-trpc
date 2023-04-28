@@ -7,10 +7,12 @@ const outputListUsersWithProjects = z.object({
     z.object({
       id: z.number(),
       firstname: z.string(),
+      role: z.string().nullable(),
       projects: z.array(
         z.object({
           name: z.string(),
           description: z.string(),
+          joinAt: z.date().nullable(),
         })
       ),
     })
@@ -21,6 +23,7 @@ export const defaultUserSelect = Prisma.validator<Prisma.UserArgs>()({
   select: {
     id: true,
     firstname: true,
+    role: true,
     projects: {
       select: {
         userId: true,
@@ -56,7 +59,10 @@ const listUsersWithProjects = procedure
     const usersWithProjects = users.map((user) => {
       return {
         ...user,
-        projects: user.projects.map((project) => project.project),
+        projects: user.projects.map(({ joinAt, ...projectRelation }) => ({
+          ...projectRelation.project,
+          joinAt,
+        })),
       };
     });
 

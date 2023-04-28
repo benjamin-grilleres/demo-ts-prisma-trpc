@@ -5,6 +5,7 @@ test("listUsersWithProjects", async () => {
     {
       id: 1,
       firstname: "benjamin",
+      role: "Développeur",
       projects: [
         {
           userId: 1,

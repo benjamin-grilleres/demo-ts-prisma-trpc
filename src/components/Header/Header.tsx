@@ -11,6 +11,10 @@ const headerLinks = [
     href: ROUTE_URLS.PROJECTS,
     name: "Projets",
   },
+  {
+    href: ROUTE_URLS.USERS,
+    name: "Utilisateurs",
+  },
 ];
 
 export default function Header() {

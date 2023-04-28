@@ -4,9 +4,14 @@ import uniqid from "uniqid";
 import type { Project } from "@prisma/client";
 import styles from "./ProjectCard.module.scss";
 
-type ProjectCardPropTypes = Project;
+type ProjectCardPropTypes = {
+  name: Project["name"];
+  description?: Project["description"];
+};
 
-const ProjectCard = ({ id, name, description }: ProjectCardPropTypes) => {
+const PROJECT_CARD_RANDOM_IMAGE_URL = `https://source.unsplash.com/featured/300x201?sig=${uniqid()}`;
+
+const ProjectCard = ({ name, description }: ProjectCardPropTypes) => {
   const clss = cssModulesClasses(styles);
   const classes = {
     root: clss("prefix-project-card"),
@@ -16,7 +21,7 @@ const ProjectCard = ({ id, name, description }: ProjectCardPropTypes) => {
     <div className={classes.root}>
       <div className="group aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
         <Image
-          src={`https://source.unsplash.com/featured/300x201?sig=${uniqid()}`}
+          src={PROJECT_CARD_RANDOM_IMAGE_URL}
           className="pointer-events-none object-cover group-hover:opacity-75"
           alt={name}
           fill
@@ -28,9 +33,11 @@ const ProjectCard = ({ id, name, description }: ProjectCardPropTypes) => {
       <p className="pointer-events-none mt-2 block truncate text-sm font-medium text-gray-900">
         {name}
       </p>
-      <p className="pointer-events-none block text-sm font-medium text-gray-500">
-        {description}
-      </p>
+      {description ? (
+        <p className="pointer-events-none block text-sm font-medium text-gray-500">
+          {description}
+        </p>
+      ) : null}
     </div>
   );
 };

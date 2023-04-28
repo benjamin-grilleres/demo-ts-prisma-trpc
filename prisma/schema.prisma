@@ -19,6 +19,7 @@ model City {
 model User {
   id        Int               @id @default(autoincrement())
   firstname String
+  role      String?
   projects  ProjectsOnUsers[]
 }
 

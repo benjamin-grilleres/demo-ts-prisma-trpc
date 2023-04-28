@@ -30,7 +30,7 @@ export default function ProjectsPage() {
         className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
       >
         {projects.map((project) => (
-          <li key={project.slug} className="relative">
+          <li key={project.name} className="relative">
             <ProjectCard {...project} />
           </li>
         ))}
